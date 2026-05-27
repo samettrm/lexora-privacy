@@ -28,7 +28,7 @@
 <!-- ────────────────  TÜRKÇE  ──────────────── -->
 <a id="tr"></a>
 <h1>Lexora — Gizlilik Politikası</h1>
-<p class="updated">Son güncelleme: 26 Mayıs 2026</p>
+<p class="updated">Son güncelleme: 27 Mayıs 2026</p>
 
 <p>Lexora (com.sametterme.lexora, "uygulama") kullanıcılarımızın gizliliğine saygı duyar. Bu politika, uygulamayı kullandığınızda hangi verilerin toplandığını, nasıl kullanıldığını ve haklarınızı açıklar.</p>
 
@@ -37,32 +37,53 @@
 <h3>1.1 Cihazda Saklanan Veriler (Yerel)</h3>
 <ul>
   <li>Öğrenilen kelimeler, flashcard ilerlemesi, sınav skorları</li>
+  <li>Favoriler, arama geçmişi (cihazda 50 girişle sınırlı)</li>
+  <li>Streak (günlük seri), günlük hedef, çalışma logu</li>
   <li>Premium abonelik durumu (yerel cache)</li>
-  <li>Dil tercihi, tema ayarları</li>
-  <li>Arama geçmişi (cihazda 50 girişle sınırlı)</li>
+  <li>Dil tercihi, tema ayarları, kullanıcı adı, avatar</li>
 </ul>
-<p>Bu veriler cihazınızdan ayrılmaz, sunucuya gönderilmez.</p>
+<p>Hesap oluşturmadığınız sürece bu veriler cihazınızdan ayrılmaz.</p>
 
-<h3>1.2 Sunucuya Gönderilen Veriler</h3>
+<h3>1.2 İsteğe Bağlı Hesap Oluşturmada Toplanan Veriler</h3>
+<p>İlerlemenizi yeni cihaza taşımak için hesap oluşturabilirsiniz. Hesap oluşturmak <strong>tamamen isteğe bağlıdır</strong>; uygulamayı hesapsız da kullanabilirsiniz.</p>
 <ul>
-  <li><strong>Çeviri sorguları</strong>: Google Translate API'ye anonim metin gönderilir (kelime/cümle), hiçbir kişisel kimlik bilgisi içermez</li>
-  <li><strong>Anonim kullanım analitiği</strong>: Uygulama açılış sayısı, kullanılan özellikler (Google Analytics / Firebase)</li>
-  <li><strong>Satın alma doğrulaması</strong>: Apple App Store ve Google Play üzerinden abonelik durumu RevenueCat'e iletilir (kişisel veri içermez)</li>
+  <li><strong>E-posta + şifre ile kayıt</strong>: E-posta adresiniz Firebase Authentication'da saklanır. Şifre güvenli hash'lenir, hiçbir çalışan tarafından okunamaz.</li>
+  <li><strong>Apple ile Giriş</strong>: Apple'dan kimlik token'ı alınır. İsteğe bağlı olarak isim ve e-posta paylaşırsınız. "E-postamı sakla" seçeneğini kullanırsanız Apple proxy bir e-posta üretir.</li>
+  <li><strong>Google ile Giriş</strong>: Google hesabınızdan e-posta, isim ve profil fotoğrafı alınır.</li>
 </ul>
 
-<h3>1.3 Toplanmayan Veriler</h3>
+<h3>1.3 Hesabınızla Bulutta Saklanan Veriler</h3>
+<p>Hesap açtığınızda <strong>sadece sizin için</strong> Firebase Firestore'da bir doküman oluşturulur. İçeriği:</p>
 <ul>
-  <li>İsim, e-posta, telefon numarası, adres</li>
+  <li>Kullanıcı kimliği (UID), e-posta, görüntü adı, profil fotoğrafı URL'si</li>
+  <li>Hesap oluşturma + son giriş tarihi</li>
+  <li>Premium durum aynası (kaynağı RevenueCat)</li>
+  <li>İlerleme verileri: öğrenilen kelimeler, favoriler, sınav skorları, streak, günlük hedef, çalışma logu, arama geçmişi, flashcard geçmişi, dil tercihi, kullanıcı adı, avatar</li>
+</ul>
+<p>Bu veriler <strong>sadece sizin UID'nizle eşleşen Firestore dokümanında</strong> saklanır. Firestore Security Rules ile başka hiçbir kullanıcı erişemez. Diğer cihazlarınıza aynı hesapla giriş yaptığınızda otomatik olarak indirilir.</p>
+
+<h3>1.4 Anonim Sunucu İstekleri</h3>
+<ul>
+  <li><strong>Çeviri sorguları</strong>: Google Translate API'ye anonim metin gönderilir (kelime/cümle); hesap UID'si veya kişisel bilgi içermez.</li>
+  <li><strong>Anonim kullanım analitiği</strong>: Uygulama açılış sayısı, kullanılan özellikler.</li>
+  <li><strong>Satın alma doğrulaması</strong>: Apple App Store / Google Play üzerinden abonelik durumu RevenueCat'e iletilir. Hesabınız varsa RevenueCat'e UID gönderilir ki abonelik farklı cihaza geçebilsin.</li>
+</ul>
+
+<h3>1.5 Toplanmayan Veriler</h3>
+<ul>
   <li>Konum bilgisi</li>
   <li>Rehber, fotoğraf, dosya erişimi</li>
-  <li>Kamera ve mikrofon kayıtları (mikrofon sadece anlık sesli giriş için cihazda işlenir, kaydedilmez)</li>
+  <li>Telefon numarası, adres</li>
+  <li>Kamera kaydı</li>
+  <li>Ses kaydı (Sprechen özelliğinde mikrofon sadece <strong>cihaz üzerinde</strong> Apple Speech Recognition ile işlenir; ses sunucuya gönderilmez, hiçbir yerde saklanmaz)</li>
 </ul>
 
 <h2>2. Verilerin Kullanım Amacı</h2>
 <ul>
   <li>Kelime öğrenme deneyimini kişiselleştirmek</li>
+  <li>İlerlemenizi cihazlar arasında senkronlamak (sadece hesap açtıysanız)</li>
   <li>Çeviri sonuçlarını sağlamak</li>
-  <li>Premium abonelik haklarınızı doğrulamak</li>
+  <li>Premium abonelik haklarınızı doğrulamak ve cihazlar arası taşımak</li>
   <li>Uygulama hatalarını tespit edip iyileştirmek</li>
 </ul>
 
@@ -70,28 +91,33 @@
 <ul>
   <li><strong>Apple App Store / Google Play</strong> — abonelik yönetimi (<a href="https://www.apple.com/legal/privacy/">Apple gizlilik politikası</a>, <a href="https://policies.google.com/privacy">Google gizlilik politikası</a>)</li>
   <li><strong>RevenueCat</strong> — abonelik altyapısı (<a href="https://www.revenuecat.com/privacy">RC gizlilik politikası</a>)</li>
+  <li><strong>Firebase (Google LLC)</strong> — Authentication + Firestore + Analytics altyapısı, hesap işlevleri ve cloud sync için (<a href="https://firebase.google.com/support/privacy">Firebase gizlilik politikası</a>)</li>
   <li><strong>Google Translate</strong> — çeviri servisi (anonim sorgular)</li>
   <li><strong>Google AdMob</strong> — sadece ücretsiz kullanıcılarda reklam, premium kullanıcılarda kapalı (<a href="https://policies.google.com/technologies/ads">AdMob gizlilik</a>)</li>
+  <li><strong>Apple Speech Recognition</strong> — Sprechen özelliği için cihaz üzerinde çalışan konuşma tanıma. Ses cihazdan çıkmaz.</li>
 </ul>
 
 <h2>4. Çocukların Gizliliği</h2>
 <p>Lexora 13 yaş altı çocuklardan bilinçli olarak veri toplamaz. Eğer çocuğunuzun bilgilerini bizimle paylaştığını fark ederseniz, lütfen aşağıdaki iletişim adresinden bize ulaşın.</p>
 
-<h2>5. Veri Silme</h2>
-<p>Uygulamayı kaldırdığınızda cihazdaki tüm yerel veriler silinir. Anonim analitik veriler için: support@lexora.app adresinden talepte bulunabilirsiniz.</p>
+<h2>5. Veri Saklama ve Silme</h2>
+<ul>
+  <li><strong>Hesapsız kullanım</strong>: Uygulamayı kaldırdığınızda cihazdaki tüm yerel veriler silinir.</li>
+  <li><strong>Hesaplı kullanım</strong>: Uygulamadan çıkış yaptığınızda cihazdaki ilerleme verileri silinir; buluttaki kalır. Hesabınızı tamamen silmek için <a href="mailto:sametrme@gmail.com">sametrme@gmail.com</a> adresine "hesap silme talebi" e-postası gönderin. Firebase Auth kullanıcınız ve Firestore'daki tüm verileriniz 30 gün içinde kalıcı olarak silinir.</li>
+</ul>
 
 <h2>6. Politika Değişiklikleri</h2>
 <p>Bu politika güncellendiğinde tarih yenilenir. Önemli değişikliklerde uygulama içi bildirim gönderilir.</p>
 
 <h2>7. İletişim</h2>
-<p>Sorular için: <a href="mailto:sametrme@gmail.com">sametrme@gmail.com</a></p>
+<p>Sorular veya veri silme talepleri için: <a href="mailto:sametrme@gmail.com">sametrme@gmail.com</a></p>
 
 <hr>
 
 <!-- ────────────────  ENGLISH  ──────────────── -->
 <a id="en"></a>
 <h1>Lexora — Privacy Policy</h1>
-<p class="updated">Last updated: May 26, 2026</p>
+<p class="updated">Last updated: May 27, 2026</p>
 
 <p>Lexora (com.sametterme.lexora, "the app") respects user privacy. This policy explains what data is collected when you use the app, how it is used, and your rights.</p>
 
@@ -100,32 +126,53 @@
 <h3>1.1 Locally Stored Data (On-Device Only)</h3>
 <ul>
   <li>Learned words, flashcard progress, exam scores</li>
+  <li>Favorites, search history (limited to 50 entries on device)</li>
+  <li>Streak (daily run), daily goal, study log</li>
   <li>Premium subscription status (local cache)</li>
-  <li>Language preference, theme settings</li>
-  <li>Search history (limited to 50 entries on device)</li>
+  <li>Language preference, theme settings, user name, avatar</li>
 </ul>
-<p>This data never leaves your device.</p>
+<p>Unless you create an account, this data never leaves your device.</p>
 
-<h3>1.2 Data Sent to Servers</h3>
+<h3>1.2 Data Collected When You Optionally Create an Account</h3>
+<p>You may create an account so your progress moves to a new device. Account creation is <strong>completely optional</strong>; the app works without one.</p>
 <ul>
-  <li><strong>Translation queries</strong>: Anonymous text (words/sentences) sent to Google Translate API. Contains no personal identifying information.</li>
-  <li><strong>Anonymous usage analytics</strong>: App open count, feature usage (Google Analytics / Firebase)</li>
-  <li><strong>Purchase verification</strong>: Subscription status forwarded to RevenueCat through Apple App Store and Google Play (no personal data)</li>
+  <li><strong>Email + password sign-up</strong>: Your email is stored in Firebase Authentication. The password is securely hashed and unreadable by any human.</li>
+  <li><strong>Sign In with Apple</strong>: Apple's identity token is received. Optionally you share name and email. If you choose "Hide my email", Apple generates a relay address.</li>
+  <li><strong>Sign In with Google</strong>: Email, name and profile photo are received from your Google account.</li>
 </ul>
 
-<h3>1.3 Data We Do Not Collect</h3>
+<h3>1.3 Data Stored in the Cloud With Your Account</h3>
+<p>When you create an account, a Firestore document is created <strong>only for you</strong>. It contains:</p>
 <ul>
-  <li>Name, email, phone number, address</li>
+  <li>User ID (UID), email, display name, profile photo URL</li>
+  <li>Account creation + last sign-in timestamps</li>
+  <li>Premium status mirror (source of truth: RevenueCat)</li>
+  <li>Progress data: learned words, favorites, exam scores, streak, daily goal, study log, search history, flashcard history, language preference, user name, avatar</li>
+</ul>
+<p>This data is stored <strong>only in the Firestore document matched to your UID</strong>. Firestore Security Rules ensure no other user can access it. When you sign in on another device with the same account, it is downloaded automatically.</p>
+
+<h3>1.4 Anonymous Server Requests</h3>
+<ul>
+  <li><strong>Translation queries</strong>: Anonymous text (words/sentences) sent to Google Translate API; contains no UID or personal information.</li>
+  <li><strong>Anonymous usage analytics</strong>: App open count, feature usage.</li>
+  <li><strong>Purchase verification</strong>: Subscription status forwarded to RevenueCat through Apple App Store and Google Play. If you have an account, your UID is sent to RevenueCat so your subscription can transfer between devices.</li>
+</ul>
+
+<h3>1.5 Data We Do Not Collect</h3>
+<ul>
   <li>Location</li>
   <li>Contacts, photos, file access</li>
-  <li>Camera and microphone recordings (microphone is processed on-device for voice input only; nothing is stored or transmitted)</li>
+  <li>Phone number, address</li>
+  <li>Camera recordings</li>
+  <li>Audio recordings (microphone in the Sprechen feature is processed <strong>on-device only</strong> via Apple Speech Recognition; nothing is sent to or stored on our servers)</li>
 </ul>
 
 <h2>2. Purpose of Data Use</h2>
 <ul>
   <li>Personalize the word-learning experience</li>
+  <li>Sync your progress across devices (only if you have an account)</li>
   <li>Provide translation results</li>
-  <li>Validate your Premium subscription entitlement</li>
+  <li>Validate your Premium subscription entitlement and carry it across devices</li>
   <li>Detect bugs and improve the app</li>
 </ul>
 
@@ -133,21 +180,26 @@
 <ul>
   <li><strong>Apple App Store / Google Play</strong> — subscription management</li>
   <li><strong>RevenueCat</strong> — subscription infrastructure</li>
+  <li><strong>Firebase (Google LLC)</strong> — Authentication + Firestore + Analytics for account features and cloud sync (<a href="https://firebase.google.com/support/privacy">Firebase privacy policy</a>)</li>
   <li><strong>Google Translate</strong> — translation service (anonymous queries)</li>
   <li><strong>Google AdMob</strong> — advertising for free users only; disabled for Premium subscribers</li>
+  <li><strong>Apple Speech Recognition</strong> — on-device speech recognition for the Sprechen feature. Audio never leaves the device.</li>
 </ul>
 
 <h2>4. Children's Privacy</h2>
 <p>Lexora does not knowingly collect data from children under 13. If you become aware that your child has shared information with us, please contact us at the address below.</p>
 
-<h2>5. Data Deletion</h2>
-<p>Uninstalling the app deletes all local data on your device. For anonymous analytics data, you may request deletion at sametrme@gmail.com.</p>
+<h2>5. Data Retention and Deletion</h2>
+<ul>
+  <li><strong>Anonymous use</strong>: Uninstalling the app deletes all local data on your device.</li>
+  <li><strong>Account use</strong>: Signing out from the app deletes your progress data on the device; the cloud copy stays. To delete your account entirely, email "account deletion request" to <a href="mailto:sametrme@gmail.com">sametrme@gmail.com</a>. Your Firebase Auth user and all Firestore data are permanently deleted within 30 days.</li>
+</ul>
 
 <h2>6. Policy Changes</h2>
 <p>When this policy is updated, the date is refreshed. Major changes are announced via in-app notification.</p>
 
 <h2>7. Contact</h2>
-<p>Questions: <a href="mailto:sametrme@gmail.com">sametrme@gmail.com</a></p>
+<p>Questions or data deletion requests: <a href="mailto:sametrme@gmail.com">sametrme@gmail.com</a></p>
 
 </body>
 </html>
